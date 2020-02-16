@@ -32,6 +32,7 @@ public class Game extends JFrame implements Runnable
 
     public void run()
     {
+        System.out.println("Error");
         BufferStrategy bufferStrategy = canvas.getBufferStrategy();
         int i = 0;
         int x = 0;
@@ -63,5 +64,6 @@ public class Game extends JFrame implements Runnable
     {
         Game game = new Game();
         Thread gameThread = new Thread();
+        gameThread.start();
     }
 }
