@@ -11,3 +11,16 @@
      - Update() - This method will run at a specific rate.
        - Will update player/NPC movement. Change any variables, etc.
 
+# Let's get those pixels
+
+## BufferedImage
+
+ - An image with a buffer.
+ - Allows us to edit all tof the pixels in the bugger.
+ - A compromised of a ColorModel and a Raster of image data.
+   - ColorModel - Handles our RGB Components in order to render a complete image to the screen ( with all colors mixed)
+   - Raster - A rectangular array of pixels
+     - DataBuffer - Stores all the pixel values in an array
+     - SampleModel - Describe how to locate the pixel values
+
+# Importing Game Models.
