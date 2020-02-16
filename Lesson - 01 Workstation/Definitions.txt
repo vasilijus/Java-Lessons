@@ -48,8 +48,8 @@ Graphics Buffering
 
             Canvas
         
-     - A JFrame Component that we can draw our graphics to.
-     - Handles our BufferStrategy (We give it the ammount of buffers needed, it handles the switchin).
+     - A 'JFrame Component' that we can draw our graphics to.
+     - Handles our 'BufferStrategy' (We give it the ammount of buffers needed, it handles the switchin).
 
 
      
