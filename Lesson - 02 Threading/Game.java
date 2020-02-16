@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.image.BufferStrategy;
 import java.awt.Graphics;
 import java.lang.Runnable;
+import java.lang.Thread;
 import javax.swing.JFrame;
 
 public class Game extends JFrame implements Runnable
@@ -60,6 +61,7 @@ public class Game extends JFrame implements Runnable
 
     public static void main(String[] args)
     {
-        new Game();
+        Game game = new Game();
+        Thread gameThread = new Thread();
     }
 }
