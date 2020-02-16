@@ -1,0 +1,55 @@
+Graphics Buffering
+
+ - Computing definition of a buffer is to "store (data) in a buffer while it is being processed or transfeerred"
+ - Graphics Buffering means we are going to have 2 or more arrays of screens pixels.
+    - One of the arrays will be what we are showing on the screens.
+    - One of the arrays wo;; be what we are writing ro.
+    - The arrays woll queue up to be put on screen , and then recycled to be used to again
+
+
+        4 Buffers - all are cycling through
+
+    On screen   <--     Bufer 1
+        |                  /\
+        \/                 |
+    On screen   -->     Bufer 1
+
+
+        Or 3 Buffers
+
+        -------------------------->
+    On screen   <-- Bufer 1 <-- Bufer 2
+
+
+    ----------------------------------------------------------------------------------------
+
+
+            Graphics
+
+     - An 'abstract' base class for all graphics contextsts taht allow an application to draw onto components.
+
+    
+            Graphics2D
+
+     - An 'Extension' of the Graphics class that allows control over geometry,
+     coordinate transformations, color managment , and text layout
+     - Means we can:
+        - Mamage the color 0f every pixel on the screen
+        - Translate , Rotate, and scale the graphics.
+        - Print texts onto the screen at specifiv coordinates with a specific font.
+
+
+
+
+            BufferStrategy
+
+     - A 'Mechanism' to handle our Graphics Buffering.
+     - Allows us to swap and access our Graphics Buffers.
+
+            Canvas
+        
+     - A JFrame Component that we can draw our graphics to.
+     - Handles our BufferStrategy (We give it the ammount of buffers needed, it handles the switchin).
+
+
+     
