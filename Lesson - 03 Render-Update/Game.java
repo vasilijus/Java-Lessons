@@ -36,28 +36,44 @@ public class Game extends JFrame implements Runnable
         BufferStrategy bufferStrategy = canvas.getBufferStrategy();
         int i = 0;
         int x = 0;
-        // Bad loop
+
+        // Getting time in Java
+        long lastTime = System.nanoTime(); // long (2^63) > int 
+        double nanoSecondConversion = 1000000000.0 / 60; //  1e+9 / ^0 frames per second 
+        double changeInSeconds = 0;
+
         while(true) {
-            i++;
-            if ( i >= 1000) {
-                i = 0;
-                x++;
+            long now = System.nanoTime();
+            
+            changeInSeconds += (now -lastTime) / nanoSecondConversion; 
+            System.out.println(changeInSeconds);
+            while( changeInSeconds >= 60 ) {
+
             }
-            bufferStrategy = canvas.getBufferStrategy();
-            Graphics graphics = bufferStrategy.getDrawGraphics();
-            super.paint(graphics);
-            // Paint rectangle
-            graphics.setColor(Color.black);
-            graphics.fillRect(0, 0, getWidth(), getHeight());
-            // paint circle
-            graphics.setColor(Color.red);
-            graphics.fillOval(x, 50, 20, 40);
-            // Release the graphics restore
-            graphics.dispose();
-            bufferStrategy.show();
 
-
+            lastTime = now;
         }
+
+        // // Bad loop
+        // while(true) {
+        //     i++;
+        //     if ( i >= 1000) {
+        //         i = 0;
+        //         x++;
+        //     }
+        //     bufferStrategy = canvas.getBufferStrategy();
+        //     Graphics graphics = bufferStrategy.getDrawGraphics();
+        //     super.paint(graphics);
+        //     // Paint rectangle
+        //     graphics.setColor(Color.black);
+        //     graphics.fillRect(0, 0, getWidth(), getHeight());
+        //     // paint circle
+        //     graphics.setColor(Color.red);
+        //     graphics.fillOval(x, 50, 20, 40);
+        //     // Release the graphics restore
+        //     graphics.dispose();
+        //     bufferStrategy.show();
+        // }
     }
 
     public static void main(String[] args)
