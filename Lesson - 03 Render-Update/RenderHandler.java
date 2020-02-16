@@ -24,6 +24,7 @@ public class RenderHandler
         for(int index = 0; index < pixels.length; index++) {            
             pixels[index] = (int)(Math.random() * 0xFFFFFF);
         }
+        
         graphics.drawImage(view, 0, 0, view.getWidth(), view.getHeight(), null);
     }
  
