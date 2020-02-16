@@ -18,7 +18,7 @@ public class Game extends JFrame implements Runnable
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Set window boundaries
-        setBounds(0,0,800,600);
+        setBounds(0,0,1000,800);
 
         // Put Frame to center of screen
         setLocationRelativeTo(null);
@@ -83,10 +83,6 @@ public class Game extends JFrame implements Runnable
             lastTime = now;
         }
 
-        // // Bad loop
-        // while(true) {
-
-        // }
     }
 
 
