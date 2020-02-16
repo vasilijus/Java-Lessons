@@ -1,17 +1,24 @@
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import java.awt.Graphics;
+
 import java.lang.Runnable;
 import java.lang.Thread;
+
 import javax.swing.JFrame;
+
 import javax.imageio.ImageIO;
+
+import java.io.IOException;
 
 public class Game extends JFrame implements Runnable
 {
 
     private Canvas canvas = new Canvas();
     private RenderHandler renderer;
+    private BufferedImage testImage;
 
     public Game() 
     {
@@ -34,12 +41,30 @@ public class Game extends JFrame implements Runnable
         canvas.createBufferStrategy(3);
  
         renderer = new RenderHandler( getWidth(), getHeight() );
+
+        testImage = loadImage("grass_tile.png");
     }
+
 
     public void update()
     {
         // System.out.println("Update method"); // works...
     
+    }
+
+
+    private BufferedImage loadImage(String path)
+    {
+        try { 
+            BufferedImage loadedImage = ImageIO.read( Game.class.getResource(path) );
+            BufferedImage formattedImage = new BufferedImage(loadedImage.getWidth(), loadedImage.getHeight(), BufferedImage.TYPE_INT_RGB );
+            formattedImage.getGraphics().drawImage(loadedImage, 0, 0, null);
+            System.out.println("Buffe");
+            return formattedImage;
+        } catch(IOException exception) {
+            exception.printStackTrace();
+            return null;
+        }
     }
 
 
@@ -49,7 +74,10 @@ public class Game extends JFrame implements Runnable
         BufferStrategy bufferStrategy = canvas.getBufferStrategy();
         Graphics graphics = bufferStrategy.getDrawGraphics();
         super.paint(graphics);
-
+        // System.out.println("testImage1");
+        // System.out.println(testImage);
+        // System.out.println("testImage1/");
+        renderer.renderImage(testImage, 0, 0);
         renderer.render(graphics);
     
         // Release the graphics restore

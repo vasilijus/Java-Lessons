@@ -15,4 +15,7 @@
    - A library that allows us to simply input images and output images from our storage system.
  - Every class has the ability to 'getResource("path")' which just retrieves the resource at "path" as an InputStream.
  - An InputStream Is simplt an object representing a file we are reading.
- - ImageIO.read(inputStream) 0 Reads an image at specific inputStream.
+ - ImageIO.read(inputStream) - Reads an image at specific inputStream.
+
+
+## 
