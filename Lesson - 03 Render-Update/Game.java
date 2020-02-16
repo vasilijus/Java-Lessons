@@ -10,15 +10,19 @@ public class Game extends JFrame implements Runnable
 {
 
     private Canvas canvas = new Canvas();
+    private RenderHandler renderer;
 
     public Game() 
     {
         // Makes our program shutdown when we exit
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         // Set window boundaries
         setBounds(0,0,800,600);
+
         // Put Frame to center of screen
         setLocationRelativeTo(null);
+
         // Add our graphics component
         add(canvas);
 
@@ -28,15 +32,15 @@ public class Game extends JFrame implements Runnable
         // Create our object for buffer strategy
         canvas.createBufferStrategy(3);
  
+        renderer = new RenderHandler( getWidth(), getHeight() );
     }
 
     public void update()
     {
         // System.out.println("Update method"); // works...
-        x += 1;
+    
     }
 
-    private int x = 0;
 
     public void render()
     {
@@ -45,13 +49,7 @@ public class Game extends JFrame implements Runnable
         Graphics graphics = bufferStrategy.getDrawGraphics();
         super.paint(graphics);
 
-        // Paint rectangle
-        graphics.setColor(Color.black);
-        graphics.fillRect(0, 0, getWidth(), getHeight());
-
-        // paint circle
-        graphics.setColor(Color.red);
-        graphics.fillOval(x, 50, 40, 40);
+        renderer.render(graphics);
     
         // Release the graphics restore
         graphics.dispose();
@@ -75,7 +73,7 @@ public class Game extends JFrame implements Runnable
             long now = System.nanoTime();
             
             changeInSeconds += (now -lastTime) / nanoSecondConversion; 
-            System.out.println(changeInSeconds);
+            // System.out.println(changeInSeconds);
             while( changeInSeconds >= 1 ) {
                 update();
                 changeInSeconds = 0;
