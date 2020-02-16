@@ -30,6 +30,35 @@ public class Game extends JFrame implements Runnable
  
     }
 
+    public void update()
+    {
+        // System.out.println("Update method"); // works...
+        x += 1;
+    }
+
+    private int x = 0;
+
+    public void render()
+    {
+        // System.out.println("Render method");
+        BufferStrategy bufferStrategy = canvas.getBufferStrategy();
+        Graphics graphics = bufferStrategy.getDrawGraphics();
+        super.paint(graphics);
+
+        // Paint rectangle
+        graphics.setColor(Color.black);
+        graphics.fillRect(0, 0, getWidth(), getHeight());
+
+        // paint circle
+        graphics.setColor(Color.red);
+        graphics.fillOval(x, 50, 40, 40);
+    
+        // Release the graphics restore
+        graphics.dispose();
+        bufferStrategy.show();
+    }
+
+
     public void run()
     {
         System.out.println("Error");
@@ -39,7 +68,7 @@ public class Game extends JFrame implements Runnable
 
         // Getting time in Java
         long lastTime = System.nanoTime(); // long (2^63) > int 
-        double nanoSecondConversion = 1000000000.0 / 60; //  1e+9 / ^0 frames per second 
+        double nanoSecondConversion = 1000000000.0 / 60; //  1e+9 / ^60 frames per second 
         double changeInSeconds = 0;
 
         while(true) {
@@ -47,34 +76,21 @@ public class Game extends JFrame implements Runnable
             
             changeInSeconds += (now -lastTime) / nanoSecondConversion; 
             System.out.println(changeInSeconds);
-            while( changeInSeconds >= 60 ) {
-
+            while( changeInSeconds >= 1 ) {
+                update();
+                changeInSeconds = 0;
             }
 
+            render();
             lastTime = now;
         }
 
         // // Bad loop
         // while(true) {
-        //     i++;
-        //     if ( i >= 1000) {
-        //         i = 0;
-        //         x++;
-        //     }
-        //     bufferStrategy = canvas.getBufferStrategy();
-        //     Graphics graphics = bufferStrategy.getDrawGraphics();
-        //     super.paint(graphics);
-        //     // Paint rectangle
-        //     graphics.setColor(Color.black);
-        //     graphics.fillRect(0, 0, getWidth(), getHeight());
-        //     // paint circle
-        //     graphics.setColor(Color.red);
-        //     graphics.fillOval(x, 50, 20, 40);
-        //     // Release the graphics restore
-        //     graphics.dispose();
-        //     bufferStrategy.show();
+
         // }
     }
+
 
     public static void main(String[] args)
     {
