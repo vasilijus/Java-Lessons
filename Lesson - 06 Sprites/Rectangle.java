@@ -17,11 +17,33 @@ public class Rectangle
 
     public void generateGraphics(int color) {
         pixels = new int[w*h];
+
         for (int y = 0; y < h; y++) {
-            for (int x = 0 ; x< w; x++) {
-                pixels[x+y * w] = color;
+            for (int x = 0 ; x < w; x++) {
+                pixels[x + y * w] = color;
             }
         }
+    }
+
+    public void generateGraphics(int borderWidth, int color) {
+        pixels = new int[w*h];
+
+        // Top horizontal
+        for(int y = 0; y < borderWidth; y++)
+            for(int x = 0; x < w; x++)
+                pixels[x + y * w] = color; 
+        // Left vertical
+        for(int y = 0; y < h; y++)
+            for(int x = 0; x < borderWidth; x++)
+                pixels[x + y * w] = color;
+        // Bot horizontal
+        for(int y = h - borderWidth; y < h; y++)
+            for(int x = 0; x < w; x++)
+                pixels[x + y * w] = color;
+        // Right Vertical
+        for(int y = 0; y < h; y++)
+            for(int x = w - borderWidth; x < w; x++)
+                pixels[x + y * w] = color;
     }
 
     public int[] getPixels()
