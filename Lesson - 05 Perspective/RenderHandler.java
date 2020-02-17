@@ -19,19 +19,22 @@ public class RenderHandler
         //
         camera = new Rectangle(0, 0, width, height);
 
-        camera.x = -100;
-        camera.y = -30;
+        // Make Camera Offset
+        // camera.x = -100;
+        // camera.y = -30;
 
         // Create an array for pixels
         pixels = ((DataBufferInt) view.getRaster().getDataBuffer()).getData();
 
     }
 
+
     // Renders our pixel array to the screen...
     public void render(Graphics graphics)
     {
         graphics.drawImage(view, 0, 0, view.getWidth(), view.getHeight(), null);
     }
+
 
     // Render an image to our array of pixels.
     public void renderImage(BufferedImage image, int xPosition, int yPosition, int xZoom, int yZoom)
@@ -41,6 +44,7 @@ public class RenderHandler
         renderArray(imagePixels, image.getWidth(), image.getHeight(), xPosition, yPosition, xZoom, yZoom);
     } 
 
+
     public void renderRectangle( Rectangle rectangle, int xZoom, int yZoom)
     {
         int[] rectanglePixels = rectangle.getPixels();
@@ -48,6 +52,7 @@ public class RenderHandler
             renderArray( rectanglePixels, rectangle.w, rectangle.h, rectangle.x, rectangle.y, xZoom, yZoom);
 
     }
+
 
     public void renderArray(int[] renderPixels, int renderWidth, int renderHeight, int xPosition, int yPosition, int xZoom, int yZoom)
     {
@@ -57,6 +62,7 @@ public class RenderHandler
                     for(int yZoomPosition = 0; yZoomPosition < yZoom; yZoomPosition++)
                     setPixel(renderPixels[x + y * renderWidth], (x * xZoom)+xPosition+xZoomPosition, (y*yZoom)+yPosition+yZoomPosition );      
     }
+
 
     private void setPixel( int pixel, int x, int y)
     {

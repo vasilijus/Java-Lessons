@@ -10,6 +10,7 @@ import java.lang.Thread;
 import javax.swing.JFrame;
 
 import javax.imageio.ImageIO;
+import javax.sound.midi.Receiver;
 
 import java.io.IOException;
 
@@ -19,6 +20,7 @@ public class Game extends JFrame implements Runnable
     private Canvas canvas = new Canvas();
     private RenderHandler renderer;
     private BufferedImage testImage;
+    private Rectangle testRectangle = new Rectangle(30,90,100,100);
 
     public Game() 
     {
@@ -43,6 +45,8 @@ public class Game extends JFrame implements Runnable
         renderer = new RenderHandler( getWidth(), getHeight() );
 
         testImage = loadImage("grass_tile.png");
+
+        testRectangle.generateGraphics(1230);
     }
 
 
@@ -78,6 +82,7 @@ public class Game extends JFrame implements Runnable
         // System.out.println(testImage);
         // System.out.println("testImage1/");
         renderer.renderImage(testImage, 0, 0, 5, 5);
+        renderer.renderRectangle(testRectangle, 1, 1);
         renderer.render(graphics);
     
         // Release the graphics restore

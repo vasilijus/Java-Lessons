@@ -15,7 +15,7 @@ public class Rectangle
         this(0,0,0,0);
     }
 
-    public generateGraphics(int color) {
+    public void generateGraphics(int color) {
         pixels = new int[w*h];
         for (int y = 0; y < h; y++) {
             for (int x = 0 ; x< w; x++) {
