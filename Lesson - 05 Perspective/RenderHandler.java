@@ -43,6 +43,9 @@ public class RenderHandler
 
     public void renderRectangle( Rectangle rectangle, int xZoom, int yZoom)
     {
+        int[] rectanglePixels = rectangle.getPixels();
+        if (rectanglePixels != null)
+            renderArray( rectanglePixels, rectangle.w, rectangle.h, rectangle.x, rectangle.y, xZoom, yZoom);
 
     }
 
