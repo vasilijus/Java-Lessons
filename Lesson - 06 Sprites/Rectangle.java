@@ -28,6 +28,9 @@ public class Rectangle
     public void generateGraphics(int borderWidth, int color) {
         pixels = new int[w*h];
 
+        for(int i = 0; i < pixels.length; i++)
+            pixels[i] = Game.alpha;
+            
         // Top horizontal
         for(int y = 0; y < borderWidth; y++)
             for(int x = 0; x < w; x++)

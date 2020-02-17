@@ -17,12 +17,12 @@ import java.io.IOException;
 public class Game extends JFrame implements Runnable 
 {
 
-    private static int alpha = 0xFF00DC;
+    public static int alpha = 0xFF00DC;
 
     private Canvas canvas = new Canvas();
     private RenderHandler renderer;
     private BufferedImage testImage;
-    private Rectangle testRectangle = new Rectangle(30, 90, 100, 100);
+    private Rectangle testRectangle = new Rectangle(50, 50, 100, 100);
 
     public Game() {
         // Makes our program shutdown when we exit
@@ -47,7 +47,7 @@ public class Game extends JFrame implements Runnable
 
         testImage = loadImage("grass_tile.png");
 
-        testRectangle.generateGraphics(2,1230);
+        testRectangle.generateGraphics(1, 1230);
     }
 
     public void update() {
