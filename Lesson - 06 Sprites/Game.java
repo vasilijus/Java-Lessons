@@ -22,6 +22,7 @@ public class Game extends JFrame implements Runnable
     private Canvas canvas = new Canvas();
     private RenderHandler renderer;
     private BufferedImage testImage;
+    private Sprite testSprite;
     private Rectangle testRectangle = new Rectangle(50, 50, 100, 100);
 
     public Game() {
@@ -46,6 +47,7 @@ public class Game extends JFrame implements Runnable
         renderer = new RenderHandler(getWidth(), getHeight());
 
         testImage = loadImage("grass_tile.png");
+        testSprite = new Sprite("town_tiles.png");
 
         testRectangle.generateGraphics(1, 1230);
     }
@@ -82,7 +84,8 @@ public class Game extends JFrame implements Runnable
         // System.out.println(testImage);
         // System.out.println("testImage1/");
         
-        renderer.renderImage(testImage, 0, 0, 5, 5);
+        // renderer.renderImage(testImage, 0, 0, 5, 5);
+        renderer.renderSprite(testSprite, 0,0, 16,16);
         
         renderer.renderRectangle(testRectangle, 1, 1);
 
