@@ -17,7 +17,7 @@ import java.io.IOException;
 public class Game extends JFrame implements Runnable 
 {
 
-    public static int alpha = 0xFF00DC;
+    public static int alpha = 0xFFFF00DC; // Alpha purple / 0xFF00DC -> purple
 
     private Canvas canvas = new Canvas();
     private RenderHandler renderer;
