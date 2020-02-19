@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 import javax.sound.midi.Receiver;
 
 import java.io.IOException;
+import java.io.File;
 
 public class Game extends JFrame implements Runnable 
 {
@@ -21,10 +22,12 @@ public class Game extends JFrame implements Runnable
 
     private Canvas canvas = new Canvas();
     private RenderHandler renderer;
-    private BufferedImage testImage;
-    private Sprite testSprite;
+    // private BufferedImage testImage;
+    // private Sprite testSprite;
     private SpriteSheet sheet;
     private Rectangle testRectangle = new Rectangle(50, 50, 100, 100);
+    private Tiles tiles;
+
 
     public Game() {
         // Makes our program shutdown when we exit
@@ -47,13 +50,16 @@ public class Game extends JFrame implements Runnable
 
         renderer = new RenderHandler(getWidth(), getHeight());
 
+        // load assets
         BufferedImage sheetImage = loadImage("town_tiles.png");
         sheet = new SpriteSheet(sheetImage);
         sheet.loadSprites(16,16);
 
-        testImage = loadImage("grass_tile.png");
-        // testSprite = new Sprite(testImage);
-        testSprite = sheet.getSprite(3,1);
+        tiles = new Tiles( new File("Tiles.txt", sheet) );
+
+        // testImage = loadImage("grass_tile.png");
+        // // testSprite = new Sprite(testImage);
+        // testSprite = sheet.getSprite(3,1);
 
 
         testRectangle.generateGraphics(1, 1230);
@@ -92,7 +98,7 @@ public class Game extends JFrame implements Runnable
         // System.out.println("testImage1/");
         
         // renderer.renderImage(testImage, 0, 0, 5, 5);
-        renderer.renderSprite(testSprite, 0,0, 5,5 );
+        // renderer.renderSprite(testSprite, 0,0, 5,5 );
         
         renderer.renderRectangle(testRectangle, 1, 1);
 

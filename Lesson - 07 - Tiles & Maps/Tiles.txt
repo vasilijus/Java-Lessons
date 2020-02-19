@@ -1,0 +1,2 @@
+// TileName-SpriteX,spriteY
+town_tiles
