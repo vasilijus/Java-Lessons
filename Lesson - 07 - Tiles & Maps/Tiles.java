@@ -38,12 +38,12 @@ public class Tiles
         
     }
 
-    public renderTile(int tileID, RenderHandler renderer, int xPosition, int yPosition, int xZoom, int yZoom)
+    public void renderTile(int tileID, RenderHandler renderer, int xPosition, int yPosition, int xZoom, int yZoom)
     {
         if( tileID >= 0 && tilesList.size() > tileID )
         {
             // render sprite
-            renderSprite(tilesList.get(tileID).sprite, xPosition, yPosition, xZoom, yZoom);
+            renderer.renderSprite( tilesList.get(tileID).sprite, xPosition, yPosition, xZoom, yZoom );
         }
         else
         {
@@ -51,7 +51,7 @@ public class Tiles
         }
     }
 
-    public Tile()
+    class Tile
     {
         public String tileName;
         public Sprite sprite;

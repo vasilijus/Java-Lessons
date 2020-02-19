@@ -15,6 +15,7 @@ import javax.sound.midi.Receiver;
 import java.io.IOException;
 import java.io.File;
 
+
 public class Game extends JFrame implements Runnable 
 {
 
@@ -25,6 +26,7 @@ public class Game extends JFrame implements Runnable
     // private BufferedImage testImage;
     // private Sprite testSprite;
     private SpriteSheet sheet;
+
     private Rectangle testRectangle = new Rectangle(50, 50, 100, 100);
     private Tiles tiles;
 
@@ -50,13 +52,11 @@ public class Game extends JFrame implements Runnable
 
         renderer = new RenderHandler(getWidth(), getHeight());
 
-        // load assets
         BufferedImage sheetImage = loadImage("town_tiles.png");
         sheet = new SpriteSheet(sheetImage);
         sheet.loadSprites(16,16);
-
-        tiles = new Tiles( new File("Tiles.txt", sheet) );
-
+        
+        tiles = new Tiles( new File("Tiles.txt"), sheet);
         // testImage = loadImage("grass_tile.png");
         // // testSprite = new Sprite(testImage);
         // testSprite = sheet.getSprite(3,1);
@@ -74,8 +74,7 @@ public class Game extends JFrame implements Runnable
         try {
 
             BufferedImage loadedImage = ImageIO.read(Game.class.getResource(path));
-            BufferedImage formattedImage = new BufferedImage(loadedImage.getWidth(), loadedImage.getHeight(),
-                    BufferedImage.TYPE_INT_RGB);
+            BufferedImage formattedImage = new BufferedImage(loadedImage.getWidth(), loadedImage.getHeight(), BufferedImage.TYPE_INT_RGB);
             formattedImage.getGraphics().drawImage(loadedImage, 0, 0, null);
             // System.out.println("Buffe");
             return formattedImage;
@@ -101,7 +100,6 @@ public class Game extends JFrame implements Runnable
         // renderer.renderSprite(testSprite, 0,0, 5,5 );
         
         renderer.renderRectangle(testRectangle, 1, 1);
-
         renderer.render(graphics);
 
         // Release the graphics restore

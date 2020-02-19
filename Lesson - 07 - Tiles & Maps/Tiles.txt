@@ -1,2 +1,3 @@
 // TileName-SpriteX,spriteY
-town_tiles
+town1-1-2
+town2-1-4
