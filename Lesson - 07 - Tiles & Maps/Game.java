@@ -99,6 +99,7 @@ public class Game extends JFrame implements Runnable
         // renderer.renderImage(testImage, 0, 0, 5, 5);
         // renderer.renderSprite(testSprite, 0,0, 5,5 );
         
+        tiles.renderTile( 0,  renderer,  0, 0, 3, 3);
         renderer.renderRectangle(testRectangle, 1, 1);
         renderer.render(graphics);
 
