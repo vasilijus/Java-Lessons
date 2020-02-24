@@ -29,6 +29,7 @@ public class Game extends JFrame implements Runnable
 
     private Rectangle testRectangle = new Rectangle(50, 50, 100, 100);
     private Tiles tiles;
+    private Map map;
 
 
     public Game() {
@@ -52,14 +53,21 @@ public class Game extends JFrame implements Runnable
 
         renderer = new RenderHandler(getWidth(), getHeight());
 
-        BufferedImage sheetImage = loadImage("town_tiles.png");
+        // Load Assets
+        BufferedImage sheetImage = loadImage("Tiles1.png");
         sheet = new SpriteSheet(sheetImage);
         sheet.loadSprites(16,16);
         
+        // Load Tiles
         tiles = new Tiles( new File("Tiles.txt"), sheet);
+
         // testImage = loadImage("grass_tile.png");
         // // testSprite = new Sprite(testImage);
         // testSprite = sheet.getSprite(3,1);
+
+        // Load Map
+        map = new Map( new File("Map.txt"), tiles );
+
 
 
         testRectangle.generateGraphics(1, 1230);
@@ -99,7 +107,9 @@ public class Game extends JFrame implements Runnable
         // renderer.renderImage(testImage, 0, 0, 5, 5);
         // renderer.renderSprite(testSprite, 0,0, 5,5 );
         
-        tiles.renderTile( 0,  renderer,  0, 0, 3, 3);
+        // tiles.renderTile( 0,  renderer,  0, 0, 3, 3);
+        map.render(renderer, 3, 3);
+        
         renderer.renderRectangle(testRectangle, 1, 1);
         renderer.render(graphics);
 
