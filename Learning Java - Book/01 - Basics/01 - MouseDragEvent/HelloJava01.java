@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class HelloJava
+public class HelloJava01
 {
     public static void main( String[] args )
     {
