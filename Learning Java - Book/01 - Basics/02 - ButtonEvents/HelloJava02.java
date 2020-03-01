@@ -12,7 +12,7 @@ public class HelloJava02
         frame.getContentPane().add( new HelloComponent3("Hello Java !") );
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         frame.setSize( 300, 300 );
-        frame.setVisibile( true );
+        frame.setVisible( true );
     }
 }
 
@@ -53,5 +53,24 @@ class HelloComponent3 extends JComponent implements MouseMotionListener, ActionL
     public void actionPerformed( ActionEvent e )
     {
         // someone pushing the button
+        if (e.getSource() == theButton )
+        {
+            changeColor();
+        }
     }
+
+    synchronized private void changeColor()
+    {
+        // changes index to the next colorrrr
+        if ( ++colorIndex == someColors.length )
+            colorIndex = 0;
+        setForeground( currentColor() );
+        repaint();
+    }
+
+    synchronized private Color currentColor()
+    {
+        return someColors[colorIndex];
+    }
+    
 }
