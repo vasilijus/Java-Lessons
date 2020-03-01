@@ -18,7 +18,7 @@ public class HelloJava03
 class HelloComponent03 extends JComponent implements MouseMotionListener, ActionListener, Runnable
 {
     String theMessage;
-    int messageX = 125, messageY = 90; // Coordinates of the message
+    int messageLocX = 125, messageLocY = 90; // Coordinates of the messageLoc
 
     JButton theButton;
 
@@ -41,13 +41,13 @@ class HelloComponent03 extends JComponent implements MouseMotionListener, Action
 
     public void paintComponent( Graphics g ) {
         g.setColor( blinkState ? getBackground() : currentColor() );
-        g.drawString( theMessage, messageX, messageY );
+        g.drawString( theMessage, messageLocX, messageLocY );
     }
 
     public void mouseDragged( MouseEvent e )
     {
-        messageX = e.getX();
-        messageY = e.getY();
+        messageLocX = e.getX();
+        messageLocY = e.getY();
         repaint();
     }
 
