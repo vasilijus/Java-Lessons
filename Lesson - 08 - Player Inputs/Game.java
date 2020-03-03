@@ -32,6 +32,7 @@ public class Game extends JFrame implements Runnable
     private Map map;
 
     private GameObject[] objects;
+    private KeyBoardListener keyListener = new KeyBoardListener();
 
     private Player player;
 
@@ -78,6 +79,10 @@ public class Game extends JFrame implements Runnable
         objects = new GameObject[1];
         player = new Player();
         objects[0] = player;
+        
+        // Add Listeners
+        canvas.addKeyListener( keyListener );
+        canvas.addFocusListener( keyListener );
     }
 
     public void update() {
