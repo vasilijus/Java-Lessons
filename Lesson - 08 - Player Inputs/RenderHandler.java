@@ -16,7 +16,6 @@ public class RenderHandler
         // Create a BufferedImage that will represent the view
         view = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
-        //
         camera = new Rectangle(0, 0, width, height);
 
         // Make Camera Offset
@@ -47,9 +46,7 @@ public class RenderHandler
 
     public void renderSprite(Sprite sprite, int xPosition, int yPosition, int xZoom, int yZoom)
     {
-
         renderArray( sprite.getPixels(), sprite.getWidth(), sprite.getHeight(), xPosition, yPosition, xZoom, yZoom);
-
     }
 
 
@@ -58,7 +55,6 @@ public class RenderHandler
         int[] rectanglePixels = rectangle.getPixels();
         if (rectanglePixels != null)
             renderArray( rectanglePixels, rectangle.w, rectangle.h, rectangle.x, rectangle.y, xZoom, yZoom);
-
     }
 
 

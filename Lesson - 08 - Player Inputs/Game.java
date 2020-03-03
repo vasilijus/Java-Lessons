@@ -31,6 +31,10 @@ public class Game extends JFrame implements Runnable
     private Tiles tiles;
     private Map map;
 
+    private GameObject[] objects;
+
+    private Player player;
+
 
     public Game() {
         // Makes our program shutdown when we exit
@@ -68,14 +72,19 @@ public class Game extends JFrame implements Runnable
         // Load Map
         map = new Map( new File("Map.txt"), tiles );
 
-
-
         testRectangle.generateGraphics(1, 1230);
+
+        // load objects
+        objects = new GameObject[1];
+        player = new Player();
+        objects[0] = player;
     }
 
     public void update() {
         // System.out.println("Update method"); // works...
-
+        for ( int i = 0 ; i < objects.length; i++ ) {
+            objects[i].update( this );
+        }
     }
 
     private BufferedImage loadImage(String path) {
@@ -100,17 +109,13 @@ public class Game extends JFrame implements Runnable
         BufferStrategy bufferStrategy = canvas.getBufferStrategy();
         Graphics graphics = bufferStrategy.getDrawGraphics();
         super.paint(graphics);
-        // System.out.println("testImage1");
-        // System.out.println(testImage);
-        // System.out.println("testImage1/");
-        
-        // renderer.renderImage(testImage, 0, 0, 5, 5);
-        // renderer.renderSprite(testSprite, 0,0, 5,5 );
-        
-        // tiles.renderTile( 0,  renderer,  0, 0, 3, 3);
+
         map.render(renderer, 3, 3);
         
-        renderer.renderRectangle(testRectangle, 1, 1);
+        // renderer.renderRectangle(testRectangle, 1, 1);
+
+        for ( int i = 0; i < objects.length; i++ )
+            objects[i].render( renderer, 3, 3 );
         renderer.render(graphics);
 
         // Release the graphics restore
