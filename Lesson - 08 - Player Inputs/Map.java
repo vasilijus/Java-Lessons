@@ -57,12 +57,14 @@ public class Map
         int tileWidth = 16 * xZoom;
         int tileHeight = 16 * yZoom;
 
-        if( fillTileID >= 0 ) {
+        if( fillTileID >= 0 ) 
+        {
             Rectangle camera = renderer.getCamera();
 
-            for( int y = 0; y < camera.h; y+=  tileHeight ) 
+            for( int y = camera.y - (camera.y % tileHeight) ; y < camera.y + camera.h ; y+=  tileHeight ) 
             {
-                for( int x = 0; x < camera.w; x+= tileWidth ) {
+                for( int x = camera.x  - (camera.x % tileWidth); x < camera.x + camera.w ; x+= tileWidth ) 
+                {
                     tileSet.renderTile( fillTileID, renderer, x, y, xZoom, yZoom );
                 }
             }
