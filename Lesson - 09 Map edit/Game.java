@@ -33,6 +33,7 @@ public class Game extends JFrame implements Runnable
 
     private GameObject[] objects;
     private KeyBoardListener keyListener = new KeyBoardListener();
+    private MouseEventListener mouseListener = new MouseEventListener(this);
 
     private Player player;
 
@@ -83,6 +84,8 @@ public class Game extends JFrame implements Runnable
         // Add Listeners
         canvas.addKeyListener( keyListener );
         canvas.addFocusListener( keyListener );
+        canvas.addMouseListener( mouseListener );
+        canvas.addMouseMotionListener( mouseListener );
     }
 
     public void update() {
@@ -165,6 +168,10 @@ public class Game extends JFrame implements Runnable
 
     public KeyBoardListener getKeyListener() {
         return keyListener;
+    }
+
+    public MouseEventListener getMouseListener() {
+        return mouseListener;
     }
 
     public RenderHandler getRenderer()
