@@ -15,13 +15,36 @@ public class KeyBoardListener implements KeyListener, FocusListener
             keys[keyCode] = true;
     }
 
-    public void keyReleased( KeyEvent event ) { }
+    public void keyReleased( KeyEvent event ) {
+        int keyCode = event.getKeyCode();
+        if( keyCode < keys.length )
+            keys[keyCode] = false;
+    }
 
-    public void focusLost( FocusEvent event ) { }
+    public void focusLost( FocusEvent event ) {
+        for( int  i = 0; i < keys.length; i++ )
+            keys[i] = false;
+    }
 
     public void keyTyped( KeyEvent event ) {
 
     }
 
     public void focusGained( FocusEvent event ) { }
+
+    public boolean up() {
+        return ;
+    }
+
+    public boolean down() {
+        
+    }
+
+    public boolean left() {
+        
+    }
+
+    public boolean right() {
+        
+    }
 }
