@@ -37,6 +37,8 @@ public class Game extends JFrame implements Runnable
 
     private Player player;
 
+    private int xZoom = 3;
+    private int yZoom = 3;
 
     public Game() {
         // Makes our program shutdown when we exit
@@ -112,18 +114,27 @@ public class Game extends JFrame implements Runnable
         }
     }
 
+
+    public void leftClick(int x, int y) {
+        System.out.println( x + " "+ y);
+        x =( x + renderer.getCamera().x ) / (16 * xZoom) ;
+        y =( y + renderer.getCamera().y ) / (16 * yZoom) ;
+        map.setTile(x, y , 2 );
+    }
+
+
     public void render() {
         // System.out.println("Render method");
         BufferStrategy bufferStrategy = canvas.getBufferStrategy();
         Graphics graphics = bufferStrategy.getDrawGraphics();
         super.paint(graphics);
 
-        map.render(renderer, 3, 3);
+        map.render(renderer, xZoom, yZoom);
         
         // renderer.renderRectangle(testRectangle, 1, 1);
 
         for ( int i = 0; i < objects.length; i++ )
-            objects[i].render( renderer, 3, 3 );
+            objects[i].render( renderer, xZoom, yZoom );
         renderer.render(graphics);
 
         // Release the graphics restore

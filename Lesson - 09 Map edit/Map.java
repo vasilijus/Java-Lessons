@@ -52,6 +52,27 @@ public class Map
         }
     }
 
+
+    public void setTile( int tileX, int tileY, int tileID )
+    {
+        boolean foundTile = false;
+
+        for ( int i = 0; i < mappedTiles.size(); i++ )
+        {
+            MappedTile mappedTile = mappedTiles.get(i);
+            if( mappedTile.x == tileX && mappedTile.y == tileY ) {
+                mappedTile.id = tileID;
+                foundTile = true;
+                break;
+            }
+        }
+
+        if ( !foundTile )
+        {
+            mappedTiles.add( new MappedTile( tileID, tileX, tileY ) );
+        }
+    }
+
     public void render( RenderHandler renderer, int xZoom, int yZoom)
     {
         int tileWidth = 16 * xZoom;
