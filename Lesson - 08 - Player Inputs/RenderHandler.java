@@ -79,6 +79,11 @@ public class RenderHandler
         }
     }
 
+    public Rectangle getCamera()
+    {
+        return camera;
+    }
+
     public void clear()
     {
         for (int i = 0; i < pixels.length; i++ )

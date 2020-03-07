@@ -166,4 +166,9 @@ public class Game extends JFrame implements Runnable
     public KeyBoardListener getKeyListener() {
         return keyListener;
     }
+
+    public RenderHandler getRenderer()
+    {
+        return renderer;
+    }
 }
