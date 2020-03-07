@@ -9,7 +9,7 @@ public class KeyBoardListener implements KeyListener, FocusListener
     public boolean[] keys = new boolean[120];
 
     public void keyPressed( KeyEvent event ) {
-        System.out.println( event.getKeyCode() );  // Get hints in the terminal
+        // System.out.println( event.getKeyCode() );  // Get hints in the terminal
         int keyCode = event.getKeyCode();
         if( keyCode < keys.length )
             keys[keyCode] = true;

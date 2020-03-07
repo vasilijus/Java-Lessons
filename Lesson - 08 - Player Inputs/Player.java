@@ -17,6 +17,14 @@ public  class Player implements GameObject // cannot be abstract ??? abstract
     // Call at 60 fps rate
     public void update( Game game ) {
         KeyBoardListener keyListener = game.getKeyListener();
+        if ( keyListener.up() )
+            playerRectangle.y -= speed;
+        if ( keyListener.down() )
+            playerRectangle.y += speed;
+        if ( keyListener.left() )
+            playerRectangle.x -= speed;
+        if ( keyListener.right() )
+            playerRectangle.x += speed;
     }
 
 }

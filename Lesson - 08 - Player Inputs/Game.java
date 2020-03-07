@@ -126,6 +126,8 @@ public class Game extends JFrame implements Runnable
         // Release the graphics restore
         graphics.dispose();
         bufferStrategy.show();
+
+        renderer.clear();
     }
 
     public void run() {
@@ -161,7 +163,7 @@ public class Game extends JFrame implements Runnable
         gameThread.start();
     }
 
-    public function getKeyListener() {
+    public KeyBoardListener getKeyListener() {
         return keyListener;
     }
 }
