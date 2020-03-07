@@ -18,7 +18,6 @@ public  class Player implements GameObject // cannot be abstract ??? abstract
     public void update( Game game ) {
 
         KeyBoardListener keyListener = game.getKeyListener();
-        MouseEventListener mouseListener = game.getMouseListener();
         if ( keyListener.up() )
             playerRectangle.y -= speed;
         if ( keyListener.down() )

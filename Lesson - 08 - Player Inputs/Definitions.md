@@ -28,9 +28,3 @@ for ( int index = 0 ; index < objects.length; index++ ) {
 ```
 
 # Key Listener !!!
-
-
-
-# MouseListener 
-
-# MouseMotionlistener
