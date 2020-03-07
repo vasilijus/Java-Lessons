@@ -10,6 +10,7 @@ public class Map
     private int fillTileID = -1;
 
     private ArrayList<MappedTile> mappedTiles = new ArrayList<MappedTile>();
+
     public Map(File mapFile, Tiles tileSet)
     {
         this.tileSet = tileSet;
@@ -53,13 +54,24 @@ public class Map
 
     public void render( RenderHandler renderer, int xZoom, int yZoom)
     {
-        int xIncrement = 16 * xZoom;
-        int yIncrement = 16 * yZoom;
+        int tileWidth = 16 * xZoom;
+        int tileHeight = 16 * yZoom;
 
-        for(int tileIndex = 0; tileIndex < mappedTiles.size(); tileIndex++ )
+        if( fillTileID >= 0 ) {
+            Rectangle camera = renderer.getCamera();
+
+            for( int y = 0; y < camera.h; y+=  tileHeight ) 
+            {
+                for( int x = 0; x < camera.w; x+= tileWidth ) {
+                    tileSet.renderTile( fillTileID, renderer, x, y, xZoom, yZoom );
+                }
+            }
+        }
+
+        for(int tileIndex = 0; tileIndex < mappedTiles.size(); tileIndex++ ) 
         {
             MappedTile mappedTile = mappedTiles.get(tileIndex);
-            tileSet.renderTile( mappedTile.id, renderer, mappedTile.x * xIncrement, mappedTile.y * yIncrement, xZoom, yZoom );
+            tileSet.renderTile( mappedTile.id, renderer, mappedTile.x * tileWidth, mappedTile.y * tileHeight, xZoom, yZoom );
         }
     }
 
