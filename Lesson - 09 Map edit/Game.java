@@ -1,5 +1,6 @@
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
@@ -15,9 +16,7 @@ import javax.sound.midi.Receiver;
 import java.io.IOException;
 import java.io.File;
 
-
-public class Game extends JFrame implements Runnable 
-{
+public class Game extends JFrame implements Runnable {
 
     public static int alpha = 0xFFFF00DC; // Alpha purple / 0xFF00DC -> purple
 
@@ -32,7 +31,7 @@ public class Game extends JFrame implements Runnable
     private Map map;
 
     private GameObject[] objects;
-    private KeyBoardListener keyListener = new KeyBoardListener();
+    private KeyBoardListener keyListener = new KeyBoardListener(this);
     private MouseEventListener mouseListener = new MouseEventListener(this);
 
     private Player player;
@@ -64,17 +63,17 @@ public class Game extends JFrame implements Runnable
         // Load Assets
         BufferedImage sheetImage = loadImage("Tiles1.png");
         sheet = new SpriteSheet(sheetImage);
-        sheet.loadSprites(16,16);
-        
+        sheet.loadSprites(16, 16);
+
         // Load Tiles
-        tiles = new Tiles( new File("Tiles.txt"), sheet);
+        tiles = new Tiles(new File("Tiles.txt"), sheet);
 
         // testImage = loadImage("grass_tile.png");
         // // testSprite = new Sprite(testImage);
         // testSprite = sheet.getSprite(3,1);
 
         // Load Map
-        map = new Map( new File("Map.txt"), tiles );
+        map = new Map(new File("Map.txt"), tiles);
 
         testRectangle.generateGraphics(1, 1230);
 
@@ -82,18 +81,18 @@ public class Game extends JFrame implements Runnable
         objects = new GameObject[1];
         player = new Player();
         objects[0] = player;
-        
+
         // Add Listeners
-        canvas.addKeyListener( keyListener );
-        canvas.addFocusListener( keyListener );
-        canvas.addMouseListener( mouseListener );
-        canvas.addMouseMotionListener( mouseListener );
+        canvas.addKeyListener(keyListener);
+        canvas.addFocusListener(keyListener);
+        canvas.addMouseListener(mouseListener);
+        canvas.addMouseMotionListener(mouseListener);
     }
 
     public void update() {
         // System.out.println("Update method"); // works...
-        for ( int i = 0 ; i < objects.length; i++ ) {
-            objects[i].update( this );
+        for (int i = 0; i < objects.length; i++) {
+            objects[i].update(this);
         }
     }
 
@@ -101,7 +100,8 @@ public class Game extends JFrame implements Runnable
         try {
 
             BufferedImage loadedImage = ImageIO.read(Game.class.getResource(path));
-            BufferedImage formattedImage = new BufferedImage(loadedImage.getWidth(), loadedImage.getHeight(), BufferedImage.TYPE_INT_RGB);
+            BufferedImage formattedImage = new BufferedImage(loadedImage.getWidth(), loadedImage.getHeight(),
+                    BufferedImage.TYPE_INT_RGB);
             formattedImage.getGraphics().drawImage(loadedImage, 0, 0, null);
             // System.out.println("Buffe");
             return formattedImage;
@@ -114,14 +114,17 @@ public class Game extends JFrame implements Runnable
         }
     }
 
-
-    public void leftClick(int x, int y) {
-        System.out.println( x + " "+ y);
-        x =( x + renderer.getCamera().x ) / (16 * xZoom) ;
-        y =( y + renderer.getCamera().y ) / (16 * yZoom) ;
-        map.setTile(x, y , 2 );
+    public void handleCTRL(boolean[] keys) {
+        if (keys[KeyEvent.VK_S]) 
+            map.saveMap();
     }
 
+    public void leftClick(int x, int y) {
+        System.out.println(x + " " + y);
+        x = (int) Math.floor((x + renderer.getCamera().x) / (16.0 * xZoom));
+        y = (int) Math.floor((y + renderer.getCamera().y) / (16.0 * yZoom));
+        map.setTile(x, y, 2);
+    }
 
     public void render() {
         // System.out.println("Render method");
@@ -130,11 +133,11 @@ public class Game extends JFrame implements Runnable
         super.paint(graphics);
 
         map.render(renderer, xZoom, yZoom);
-        
+
         // renderer.renderRectangle(testRectangle, 1, 1);
 
-        for ( int i = 0; i < objects.length; i++ )
-            objects[i].render( renderer, xZoom, yZoom );
+        for (int i = 0; i < objects.length; i++)
+            objects[i].render(renderer, xZoom, yZoom);
         renderer.render(graphics);
 
         // Release the graphics restore
@@ -185,8 +188,12 @@ public class Game extends JFrame implements Runnable
         return mouseListener;
     }
 
-    public RenderHandler getRenderer()
-    {
+    public RenderHandler getRenderer() {
         return renderer;
     }
+
+    // public saveMap()
+    // {
+
+    // }
 }
