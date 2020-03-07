@@ -160,4 +160,8 @@ public class Game extends JFrame implements Runnable
         Thread gameThread = new Thread(game);
         gameThread.start();
     }
+
+    public function getKeyListener() {
+        return keyListener;
+    }
 }

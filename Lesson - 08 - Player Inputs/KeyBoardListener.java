@@ -9,7 +9,7 @@ public class KeyBoardListener implements KeyListener, FocusListener
     public boolean[] keys = new boolean[120];
 
     public void keyPressed( KeyEvent event ) {
-        // System.out.println( event.getKeyCode() );  // Get hints in the terminal
+        System.out.println( event.getKeyCode() );  // Get hints in the terminal
         int keyCode = event.getKeyCode();
         if( keyCode < keys.length )
             keys[keyCode] = true;
@@ -33,18 +33,18 @@ public class KeyBoardListener implements KeyListener, FocusListener
     public void focusGained( FocusEvent event ) { }
 
     public boolean up() {
-        return ;
+        return keys[KeyEvent.VK_W] || keys[KeyEvent.VK_UP];
     }
 
     public boolean down() {
-        
+        return keys[KeyEvent.VK_S] || keys[KeyEvent.VK_DOWN];
     }
 
     public boolean left() {
-        
+        return keys[KeyEvent.VK_A] || keys[KeyEvent.VK_LEFT];   
     }
 
     public boolean right() {
-        
+        return keys[KeyEvent.VK_D] || keys[KeyEvent.VK_D];        
     }
 }
