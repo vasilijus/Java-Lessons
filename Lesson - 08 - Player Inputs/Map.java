@@ -61,9 +61,9 @@ public class Map
         {
             Rectangle camera = renderer.getCamera();
 
-            for( int y = camera.y - (camera.y % tileHeight) ; y < camera.y + camera.h ; y+=  tileHeight ) 
+            for( int y = camera.y - tileHeight - (camera.y % tileHeight) ; y < camera.y + camera.h ; y+=  tileHeight ) 
             {
-                for( int x = camera.x  - (camera.x % tileWidth); x < camera.x + camera.w ; x+= tileWidth ) 
+                for( int x = camera.x - tileWidth - (camera.x % tileWidth); x < camera.x + camera.w ; x+= tileWidth ) 
                 {
                     tileSet.renderTile( fillTileID, renderer, x, y, xZoom, yZoom );
                 }
