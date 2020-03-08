@@ -55,7 +55,7 @@ public class KeyBoardListener implements KeyListener, FocusListener {
     }
 
     public boolean right() {
-        return keys[KeyEvent.VK_D] || keys[KeyEvent.VK_D];
+        return keys[KeyEvent.VK_D] || keys[KeyEvent.VK_RIGHT];
     }
 
     // public void checkSave() {

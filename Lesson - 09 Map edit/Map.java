@@ -75,23 +75,32 @@ public class Map {
         }
     }
 
+    public void removeTile(int tileX, int tileY) {
+        for (int i = 0; i < mappedTiles.size(); i++) {
+            MappedTile mappedTile = mappedTiles.get(i);
+            if (mappedTile.x == tileX && mappedTile.y == tileY) {
+                mappedTiles.remove(i);
+            }
+        }
+    }
+
     public void saveMap() {
         try {
             int currentLine = 0;
-            // if ( mapFile.exists() )
-            // mapFile.delete();
-            // mapFile.createNewFile();
-            File test = new File("saves/test.txt");
-            test.createNewFile();
+            if ( mapFile.exists() )
+                mapFile.delete();
+            mapFile.createNewFile();
+            // File test = new File("saves/test.txt");
+            // test.createNewFile();
 
-            PrintWriter printWriter = new PrintWriter(test);
+            PrintWriter printWriter = new PrintWriter(mapFile);
             if( comments.containsKey( currentLine ) ) 
                 printWriter.println( comments.get( currentLine ) );
 
             currentLine++;
 
             if (fillTileID >= 0)
-                printWriter.println("Fill: " + fillTileID);
+                printWriter.println("Fill:" + fillTileID);
 
             
             for ( int i = 0; i < mappedTiles.size(); i++ ) {

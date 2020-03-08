@@ -38,11 +38,15 @@ public class MouseEventListener implements MouseListener, MouseMotionListener
 
 	public void mousePressed(MouseEvent event)
 	{
-        // System.out.println( event.getX() + "," + event.getY());
         // game.mousePressed( event ); // event.getX(), event.getY() 
         if ( event.getButton() == MouseEvent.BUTTON1 ) {
+			// System.out.println("mouseevent button 1");
             game.leftClick( event.getX(), event.getY() );
-        }
+		}
+		if ( event.getButton() == MouseEvent.BUTTON3 ) {
+			// System.out.println("mouseevent button 3");
+			game.rightClick( event.getX(), event.getY() );
+		}
 	}
 
 	public void mouseReleased(MouseEvent event)
