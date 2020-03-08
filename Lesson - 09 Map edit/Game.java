@@ -116,6 +116,7 @@ public class Game extends JFrame implements Runnable {
 
     public void handleCTRL(boolean[] keys) {
         if (keys[KeyEvent.VK_S]) 
+            System.out.println("Saving Map...");
             map.saveMap();
     }
 
