@@ -66,14 +66,14 @@ public class Game extends JFrame implements Runnable {
         sheet.loadSprites(16, 16);
 
         // Load Tiles
-        tiles = new Tiles(new File("Tiles.txt"), sheet);
+        tiles = new Tiles(new File("defaults/Tiles.txt"), sheet);
 
         // testImage = loadImage("grass_tile.png");
         // // testSprite = new Sprite(testImage);
         // testSprite = sheet.getSprite(3,1);
 
         // Load Map
-        map = new Map(new File("Map.txt"), tiles);
+        map = new Map(new File("saves/Map.txt"), tiles);
 
         testRectangle.generateGraphics(1, 1230);
 
