@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Map {
 
@@ -12,6 +13,7 @@ public class Map {
     private int fillTileID = -1;
 
     private ArrayList<MappedTile> mappedTiles = new ArrayList<MappedTile>();
+    private HashMap<Integer, String> comments = new HashMap<Integer, String>();
 
     private File mapFile;
 
@@ -19,11 +21,14 @@ public class Map {
 
         this.mapFile = mapFile;
         this.tileSet = tileSet;
-        
+
         try {
             Scanner scanner = new Scanner(mapFile);
+            int currentLine = 0;
+
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
+
                 if (!line.startsWith("//")) {
                     if (line.contains(":")) {
                         String[] splitString = line.split(":");
@@ -41,7 +46,11 @@ public class Map {
                         mappedTiles.add(mappedTile);
                     }
 
+                } else {
+                    comments.put(currentLine, line);
                 }
+                currentLine++;
+
             }
 
         } catch (FileNotFoundException exception) {
@@ -66,28 +75,41 @@ public class Map {
         }
     }
 
-    public void saveMap() 
-    {
-        try 
-        {
+    public void saveMap() {
+        try {
+            int currentLine = 0;
             // if ( mapFile.exists() )
-            //     mapFile.delete();
+            // mapFile.delete();
             // mapFile.createNewFile();
-            File test = new File("test.txt");
+            File test = new File("saves/test.txt");
             test.createNewFile();
 
-            PrintWriter printWriter = new PrintWriter( test );
-            printWriter.println("printWriter");
-            if( fillTileID >= 0 )
-                printWriter.println("Fill: " + fillTileID );
+            PrintWriter printWriter = new PrintWriter(test);
+            if( comments.containsKey( currentLine ) ) 
+                printWriter.println( comments.get( currentLine ) );
+
+            currentLine++;
+
+            if (fillTileID >= 0)
+                printWriter.println("Fill: " + fillTileID);
+
+            
+            for ( int i = 0; i < mappedTiles.size(); i++ ) {
+                if ( comments.containsKey( currentLine ) ) 
+                    printWriter.println(comments.get( currentLine ) );
+                
+                    
+                MappedTile tile = mappedTiles.get(i);
+                printWriter.println( tile.id + "," + tile.x + "," + tile.y );
+                currentLine++;
+            }
 
             printWriter.close();
-            
-        } catch ( java.io.IOException e ) 
-        {
+
+        } catch (java.io.IOException e) {
             e.printStackTrace();
         }
-        
+
     }
 
     public void render(RenderHandler renderer, int xZoom, int yZoom) {
