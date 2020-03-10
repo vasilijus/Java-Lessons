@@ -178,7 +178,7 @@ public class Game extends JFrame implements Runnable {
     }
 
     public void run() {
-        System.out.println("Error");
+        System.out.println("Run");
         BufferStrategy bufferStrategy = canvas.getBufferStrategy();
         int i = 0;
         int x = 0;
@@ -205,6 +205,7 @@ public class Game extends JFrame implements Runnable {
     }
 
     public static void main(String[] args) {
+        System.out.println("Main started");
         Game game = new Game();
         Thread gameThread = new Thread(game);
         gameThread.start();
