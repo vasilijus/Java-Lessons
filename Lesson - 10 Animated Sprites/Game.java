@@ -94,10 +94,10 @@ public class Game extends JFrame implements Runnable {
 
         for (int i = 0; i < spritesPositions.length; i++ )
         {
-            spritesPositions[i] = new Rectangle(i, 0 , 20, 26);
+            spritesPositions[i] = new Rectangle(i * 20, 0 , 20, 26);
         }
 
-        animTest = new AnimatedSprite(playerSheet, spritesPositions, 60);
+        animTest = new AnimatedSprite(playerSheet, spritesPositions, 10); // playerSheet, Poistion, speed
         objects[1] = animTest;
 
 
