@@ -5,13 +5,14 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 
+// import java.awt.Rectangle;
 import java.lang.Runnable;
 import java.lang.Thread;
 
 import javax.swing.JFrame;
 
 import javax.imageio.ImageIO;
-import javax.sound.midi.Receiver;
+// import javax.sound.midi.Receiver;
 
 import java.io.IOException;
 import java.io.File;
@@ -22,11 +23,12 @@ public class Game extends JFrame implements Runnable {
 
     private Canvas canvas = new Canvas();
     private RenderHandler renderer;
-    // private BufferedImage testImage;
-    // private Sprite testSprite;
+
     private SpriteSheet sheet;
+    private SpriteSheet playerSheet;
 
     private Rectangle testRectangle = new Rectangle(50, 50, 100, 100);
+
     private Tiles tiles;
     private Map map;
 
@@ -67,13 +69,14 @@ public class Game extends JFrame implements Runnable {
         sheet = new SpriteSheet(sheetImage);
         sheet.loadSprites(16, 16);
 
+        BufferedImage playerSheetImage = loadImage("Player.png");
+        playerSheet = new SpriteSheet( playerSheetImage );
+        playerSheet.loadSprites(20, 26);
+
 
         // Load Tiles
         tiles = new Tiles(new File("defaults/Tiles.txt"), sheet);
 
-        // testImage = loadImage("grass_tile.png");
-        // // testSprite = new Sprite(testImage);
-        // testSprite = sheet.getSprite(3,1);
 
         // Load Map
         map = new Map(new File("saves/Map.txt"), tiles);
@@ -87,10 +90,14 @@ public class Game extends JFrame implements Runnable {
 
 
         // testing AnimatedSprites
-        BufferedImage[] animatedSpriteImages = new BufferedImage[2];
-        animatedSpriteImages[0] = loadImage("grass_tile.png");
-        animatedSpriteImages[1] = loadImage("gtest_tile.png");
-        animTest = new AnimatedSprite(animatedSpriteImages, 60);
+        Rectangle[] spritesPositions = new Rectangle[8];
+
+        for (int i = 0; i < spritesPositions.length; i++ )
+        {
+            spritesPositions[i] = new Rectangle(i, 0 , 20, 26);
+        }
+
+        animTest = new AnimatedSprite(playerSheet, spritesPositions, 60);
         objects[1] = animTest;
 
 
