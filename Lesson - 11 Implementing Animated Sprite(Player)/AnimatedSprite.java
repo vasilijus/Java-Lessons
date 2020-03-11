@@ -7,10 +7,22 @@ public class AnimatedSprite extends Sprite implements GameObject {
     private int speed;
     private int counter;
 
+    private int startSprite = 0;
+    private int endSprite;
+
     public AnimatedSprite( SpriteSheet sheet, Rectangle[] positions, int speed ) 
 	{
 		sprites = new Sprite[ positions.length ];
-		this.speed = speed;
+        this.speed = speed;
+        this.endSprite = positions.length - 1;
+    }
+    
+    
+    public AnimatedSprite( SpriteSheet sheet,  int speed ) 
+	{
+		sprites = sheet.getLoadedSprites();
+        this.speed = speed;
+        this.endSprite = sprites.length - 1;
 
 		for( int i = 0 ; i < positions.length ; i++ )
 			sprites[i] = new Sprite(sheet, positions[i].x, positions[i].y, positions[i].w, positions[i].h);
@@ -21,6 +33,7 @@ public class AnimatedSprite extends Sprite implements GameObject {
 
         sprites = new Sprite[images.length];
         this.speed = speed;
+        this.startSprite = images.length - 1;
 
         for (int i = 0; i < images.length; i++)
             sprites[i] = new Sprite(images[i]);
@@ -34,10 +47,16 @@ public class AnimatedSprite extends Sprite implements GameObject {
     // call at 60 fps rate
     public void update(Game game) {
         counter++;
-        if (counter >= speed) {
+        if (counter >= speed) 
+        {
             counter = 0;
             incrementSprite();
         }
+    }
+
+    public void setAnimationRange() {
+        this.startSprite    = startSprite;
+        this.endSprite      = endSprite;
     }
 
     public int getWidth() {
@@ -54,8 +73,9 @@ public class AnimatedSprite extends Sprite implements GameObject {
 
     public void incrementSprite() {
         currentSprite++;
-        if (currentSprite >= sprites.length)
-            currentSprite = 0;
+
+        if (currentSprite >= endSprite)
+            currentSprite = startSprite;
     }
 
 }

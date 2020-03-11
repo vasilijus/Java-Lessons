@@ -60,6 +60,11 @@ public class SpriteSheet
         return null;
     }
 
+    public Sprite[] getLoadedSprites()
+    {
+        return loadedSprites;
+    }
+
     public int[] getPixels()
     {
         return pixels;

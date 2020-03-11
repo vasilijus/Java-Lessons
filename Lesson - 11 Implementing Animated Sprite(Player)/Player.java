@@ -1,12 +1,28 @@
 public  class Player implements GameObject // cannot be abstract ??? abstract
 {
-    Rectangle playerRectangle;
-    int speed = 10;
+    private Rectangle playerRectangle;
+    private int speed = 10;
+    private Sprite sprite;
+    private AnimatedSprite animatedSprite = null;
+    // 0 = right, 1 = left , 2 = up , 3 = down
+    private int direction = 0;
 
     public Player() {
+        this.sprite = sprite;
+        if( sprite instanceof AnimatedSprite )
+            animatedSprite = ( AnimatedSprite) sprite;
+
         playerRectangle = new Rectangle( 20, 16, 16, 20 );
         playerRectangle.generateGraphics(2 , 0x00FF0090 );
 
+    }
+
+    private void updateDirection()
+    {
+        if( animatedSprite != null)
+        {
+            animatedSprite.setAnimationRange(int startSprite, int endSprite);
+        }
     }
 
     // Call every time physically possible

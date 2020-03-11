@@ -41,7 +41,7 @@ public class Game extends JFrame implements Runnable {
     private int xZoom = 3;
     private int yZoom = 3;
 
-    private AnimatedSprite animTest;
+
 
     public Game() {
         // Makes our program shutdown when we exit
@@ -73,6 +73,9 @@ public class Game extends JFrame implements Runnable {
         playerSheet = new SpriteSheet( playerSheetImage );
         playerSheet.loadSprites(20, 26);
 
+        // Player  AnimatedSprites
+        AnimatedSprite playerAnimation = new AnimatedSprite(playerSheet, 10); 
+
 
         // Load Tiles
         tiles = new Tiles(new File("defaults/Tiles.txt"), sheet);
@@ -84,21 +87,10 @@ public class Game extends JFrame implements Runnable {
         testRectangle.generateGraphics(1, 1230);
 
         // load objects
-        objects = new GameObject[2];
-        player = new Player();
+        objects = new GameObject[1];
+        player = new Player(playerAnimation);
         objects[0] = player;
-
-
-        // testing AnimatedSprites
-        Rectangle[] spritesPositions = new Rectangle[8];
-
-        for (int i = 0; i < spritesPositions.length; i++ )
-        {
-            spritesPositions[i] = new Rectangle(i * 20, 0 , 20, 26);
-        }
-
-        animTest = new AnimatedSprite(playerSheet, spritesPositions, 10); // playerSheet, Poistion, speed
-        objects[1] = animTest;
+        
 
 
         // Add Listeners
@@ -166,7 +158,7 @@ public class Game extends JFrame implements Runnable {
         for (int i = 0; i < objects.length; i++)
             objects[i].render(renderer, xZoom, yZoom);
 
-        renderer.renderSprite( animTest, 30, 30, xZoom, yZoom);
+        // renderer.renderSprite( animTest, 30, 30, xZoom, yZoom);
 
         renderer.render(graphics);
 
