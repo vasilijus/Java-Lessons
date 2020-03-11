@@ -21,7 +21,7 @@ public  class Player implements GameObject // cannot be abstract ??? abstract
     {
         if( animatedSprite != null)
         {
-            animatedSprite.setAnimationRange(int startSprite, int endSprite);
+            animatedSprite.setAnimationRange( direction * 8 , (direction * 8) + 7);
         }
     }
 
@@ -34,14 +34,38 @@ public  class Player implements GameObject // cannot be abstract ??? abstract
     public void update( Game game ) {
 
         KeyBoardListener keyListener = game.getKeyListener();
-        if ( keyListener.up() )
-            playerRectangle.y -= speed;
-        if ( keyListener.down() )
-            playerRectangle.y += speed;
-        if ( keyListener.left() )
+
+        boolean didMove = false;
+
+        if ( keyListener.left() ) {
+            direction = 1;
+            didMove = true;
             playerRectangle.x -= speed;
-        if ( keyListener.right() )
+            
+        }
+          
+        if ( keyListener.right() ) {
+            direction = 0;
+            didMove = true;
             playerRectangle.x += speed;
+            
+        }
+
+        if ( keyListener.up() ){
+            direction = 2;
+            didMove = true;
+            playerRectangle.y -= speed;
+            
+        }
+            
+        if ( keyListener.down() ) {
+            direction = 3;
+            didMove = true;
+            playerRectangle.y += speed;
+            
+        }
+      
+        updateDirection();
 
         updateCamera( game.getRenderer().getCamera() );
     }
