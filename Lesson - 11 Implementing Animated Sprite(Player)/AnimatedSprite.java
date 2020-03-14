@@ -23,9 +23,6 @@ public class AnimatedSprite extends Sprite implements GameObject {
 		sprites = sheet.getLoadedSprites();
         this.speed = speed;
         this.endSprite = sprites.length - 1;
-
-		for( int i = 0 ; i < positions.length ; i++ )
-			sprites[i] = new Sprite(sheet, positions[i].x, positions[i].y, positions[i].w, positions[i].h);
 	}
 
     // @ param speed represents how many frames pass until the sprite changes
@@ -45,7 +42,7 @@ public class AnimatedSprite extends Sprite implements GameObject {
     }
 
     // call at 60 fps rate
-    public void update(Game game) {
+    public void  update(Game game) {
         counter++;
         if (counter >= speed) 
         {
@@ -54,7 +51,7 @@ public class AnimatedSprite extends Sprite implements GameObject {
         }
     }
 
-    public void setAnimationRange() {
+    public void setAnimationRange(int startSprite, int endSprite ) {
         this.startSprite    = startSprite;
         this.endSprite      = endSprite;
     }

@@ -27,7 +27,7 @@ public class Game extends JFrame implements Runnable {
     private SpriteSheet sheet;
     private SpriteSheet playerSheet;
 
-    private Rectangle testRectangle = new Rectangle(50, 50, 100, 100);
+    private Rectangle testRectangle = new Rectangle(30, 30, 100, 100);
 
     private Tiles tiles;
     private Map map;
@@ -48,7 +48,7 @@ public class Game extends JFrame implements Runnable {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Set window boundaries
-        setBounds(0, 0, 800, 600);
+        setBounds(0, 0, 1000, 800);
 
         // Put Frame to center of screen
         setLocationRelativeTo(null);
@@ -74,7 +74,7 @@ public class Game extends JFrame implements Runnable {
         playerSheet.loadSprites(20, 26);
 
         // Player  AnimatedSprites
-        AnimatedSprite playerAnimation = new AnimatedSprite(playerSheet, 10); 
+        AnimatedSprite playerAnimation = new AnimatedSprite(playerSheet, 5);
 
 
         // Load Tiles

@@ -7,7 +7,7 @@ public  class Player implements GameObject // cannot be abstract ??? abstract
     // 0 = right, 1 = left , 2 = up , 3 = down
     private int direction = 0;
 
-    public Player() {
+    public Player( Sprite sprite ) {
         this.sprite = sprite;
         if( sprite instanceof AnimatedSprite )
             animatedSprite = ( AnimatedSprite) sprite;
@@ -21,13 +21,24 @@ public  class Player implements GameObject // cannot be abstract ??? abstract
     {
         if( animatedSprite != null)
         {
-            animatedSprite.setAnimationRange( direction * 8 , (direction * 8) + 7);
+            animatedSprite.setAnimationRange( direction * 8, ( direction * 8) + 7 );
         }
     }
 
     // Call every time physically possible
     public void render( RenderHandler renderer , int xZoom, int yZoom ) {
-        renderer.renderRectangle( playerRectangle, xZoom, yZoom );
+        //renderer.renderRectangle( playerRectangle, xZoom, yZoom );
+        if(animatedSprite != null) {
+            // System.out.println("Render: animatedSprite != null");
+            renderer.renderSprite(animatedSprite, playerRectangle.x, playerRectangle.y, xZoom, yZoom );
+        } else if (sprite != null ) {
+            System.out.println("Render: sprite != null");
+            renderer.renderSprite(sprite, playerRectangle.x, playerRectangle.y, xZoom, yZoom );
+        } else {
+            System.out.println("Render: Else");
+            renderer.renderRectangle(playerRectangle, xZoom, yZoom  );
+        }
+
     }
 
     // Call at 60 fps rate
@@ -68,6 +79,9 @@ public  class Player implements GameObject // cannot be abstract ??? abstract
         updateDirection();
 
         updateCamera( game.getRenderer().getCamera() );
+
+        animatedSprite.update(game);
+
     }
 
     public void updateCamera( Rectangle camera ) {
