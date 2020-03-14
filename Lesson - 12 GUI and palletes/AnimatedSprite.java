@@ -41,6 +41,10 @@ public class AnimatedSprite extends Sprite implements GameObject {
     public void render(RenderHandler renderer, int xZoom, int yZoom) {
     }
 
+      // Call whenever mouse is clicked within the canvas
+    public void handleMouseClick( Rectangle mouseRectangle,Rectangle camera, int xZoom, int yZoom) {}
+
+
     // call at 60 fps rate
     public void  update(Game game) 
     {

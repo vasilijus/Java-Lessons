@@ -31,13 +31,13 @@ public  class Player implements GameObject // cannot be abstract ??? abstract
         //renderer.renderRectangle( playerRectangle, xZoom, yZoom );
         if(animatedSprite != null) {
             // System.out.println("Render: animatedSprite != null");
-            renderer.renderSprite(animatedSprite, playerRectangle.x, playerRectangle.y, xZoom, yZoom );
+            renderer.renderSprite(animatedSprite, playerRectangle.x, playerRectangle.y, xZoom, yZoom, false);
         } else if (sprite != null ) {
             System.out.println("Render: sprite != null");
-            renderer.renderSprite(sprite, playerRectangle.x, playerRectangle.y, xZoom, yZoom );
+            renderer.renderSprite(sprite, playerRectangle.x, playerRectangle.y, xZoom, yZoom, false );
         } else {
             System.out.println("Render: Else");
-            renderer.renderRectangle(playerRectangle, xZoom, yZoom  );
+            renderer.renderRectangle(playerRectangle, xZoom, yZoom, false);
         }
 
     }
@@ -98,5 +98,9 @@ public  class Player implements GameObject // cannot be abstract ??? abstract
         camera.x = playerRectangle.x - ( camera.w / 2 );
         camera.y = playerRectangle.y - ( camera.h / 2 );
     }
+
+      // Call whenever mouse is clicked within the canvas
+    public void handleMouseClick( Rectangle mouseRectangle, Rectangle camera, int xZoom, int yZoom) {}
+
 
 }

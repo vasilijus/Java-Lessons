@@ -27,6 +27,8 @@ public class Game extends JFrame implements Runnable {
     private SpriteSheet sheet;
     private SpriteSheet playerSheet;
 
+    private int selectedTileID = 2;
+
     private Rectangle testRectangle = new Rectangle(30, 30, 100, 100);
 
     private Tiles tiles;
@@ -48,7 +50,7 @@ public class Game extends JFrame implements Runnable {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Set window boundaries
-        setBounds(0, 0, 1000, 800);
+        setBounds(0, 0, 1000, 700);
 
         // Put Frame to center of screen
         setLocationRelativeTo(null);
@@ -86,12 +88,26 @@ public class Game extends JFrame implements Runnable {
 
         testRectangle.generateGraphics(1, 1230);
 
+        // Load SKD GUI
+        GUIButton[] buttons = new GUIButton[tiles.size()];
+        Sprite[] tileSprites = tiles.getSprites();
+
+        for( int i = 0 ; i < buttons.length; i++)
+        {  
+            Rectangle tileRectangle = new Rectangle(0, i * (16*xZoom), 16, 16);
+            buttons[i] = new SDKButton(tileSprites[i], tileRectangle);
+        }
+
+        GUI gui = new GUI(buttons, 5, 5, true);
+
+
         // load objects
-        objects = new GameObject[1];
+        objects = new GameObject[2];
         player = new Player(playerAnimation);
         objects[0] = player;
+        objects[1] = gui;
         
-
+        System.out.print("objects: " + objects);
 
         // Add Listeners
         canvas.addKeyListener(keyListener);
@@ -133,9 +149,13 @@ public class Game extends JFrame implements Runnable {
 
     public void leftClick(int x, int y) {
         System.out.println("Click 1: " + x + " " + y);
+        Rectangle mouseRectangle = new Rectangle(x, y, 1, 1);
+        for( int i = 0; i < objects.length; i++ )
+            objects[i].handleMouseClick(mouseRectangle, renderer.getCamera(), xZoom, yZoom);
+
         x = (int) Math.floor((x + renderer.getCamera().x) / (16.0 * xZoom));
         y = (int) Math.floor((y + renderer.getCamera().y) / (16.0 * yZoom));
-        map.setTile(x, y, 2);
+        map.setTile(x, y, selectedTileID);
     }
 
     public void rightClick(int x, int y) {
@@ -168,6 +188,12 @@ public class Game extends JFrame implements Runnable {
 
         renderer.clear();
     }
+
+
+    public void changeTile(int tileID)
+    {
+        selectedTileID = tileID;
+    } 
 
     public void run() {
         System.out.println("Run");
