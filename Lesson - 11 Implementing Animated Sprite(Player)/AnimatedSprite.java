@@ -42,7 +42,8 @@ public class AnimatedSprite extends Sprite implements GameObject {
     }
 
     // call at 60 fps rate
-    public void  update(Game game) {
+    public void  update(Game game) 
+    {
         counter++;
         if (counter >= speed) 
         {
@@ -51,9 +52,17 @@ public class AnimatedSprite extends Sprite implements GameObject {
         }
     }
 
-    public void setAnimationRange(int startSprite, int endSprite ) {
+    public void reset()
+    {
+        counter = 0;
+        currentSprite = startSprite;
+    }
+
+    public void setAnimationRange(int startSprite, int endSprite ) 
+    {
         this.startSprite    = startSprite;
         this.endSprite      = endSprite;
+        reset();
     }
 
     public int getWidth() {
