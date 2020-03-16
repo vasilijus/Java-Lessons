@@ -25,10 +25,16 @@ public abstract class GUIButton implements GameObject
     public void update( Game game ) {}
 
     // Call whenever mouse is clicked within the canvas
-    public void handleMouseClick( Rectangle mouseRectangle, Rectangle camera, int xZoom, int yZoom)
+    public boolean handleMouseClick( Rectangle mouseRectangle, Rectangle camera, int xZoom, int yZoom)
     {
-        if( mouseRectangle.intersects(rect) )
+        // System.out.println("Mouse: " + mouseRectangle);
+        // System.out.println("Button " + rect);
+        if( mouseRectangle.intersects(rect) ) {
             activate();
+            return true;
+        }
+
+        return false;
     }
 
     public abstract void activate();

@@ -8,6 +8,7 @@ public interface GameObject
     public void update( Game game );
 
     // Call whenever mouse is clicked within the canvas
-    public void handleMouseClick( Rectangle mouseRectangle, Rectangle camera, int xZoom, int yZoom);
+    // Return true to stop checking other clicks
+    public boolean handleMouseClick( Rectangle mouseRectangle, Rectangle camera, int xZoom, int yZoom);
 
 }

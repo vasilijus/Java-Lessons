@@ -57,6 +57,13 @@ public class RenderHandler
             renderArray( rectanglePixels, rectangle.w, rectangle.h, rectangle.x, rectangle.y, xZoom, yZoom,  fixed);
     }
 
+    public void renderRectangle( Rectangle rectangle, Rectangle offset, int xZoom, int yZoom, boolean fixed)
+    {
+        int[] rectanglePixels = rectangle.getPixels();
+        if (rectanglePixels != null)
+            renderArray( rectanglePixels, rectangle.w, rectangle.h, rectangle.x + offset.x, rectangle.y + offset.y, xZoom, yZoom,  fixed);
+    }
+
 
     public void renderArray(int[] renderPixels, int renderWidth, int renderHeight, int xPosition, int yPosition, int xZoom, int yZoom, boolean fixed)
     {

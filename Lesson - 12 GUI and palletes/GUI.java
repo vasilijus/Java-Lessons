@@ -50,7 +50,7 @@ public class GUI implements GameObject
     } 
 
     // Call whenever mouse is clicked within the canvas
-    public void handleMouseClick( Rectangle mouseRectangle, Rectangle camera, int xZoom, int yZoom)
+    public boolean handleMouseClick( Rectangle mouseRectangle, Rectangle camera, int xZoom, int yZoom)
     {
         if(!fixed)
         {
@@ -59,11 +59,14 @@ public class GUI implements GameObject
 
         if( rect.w == 0 || rect.h == 0 || mouseRectangle.intersects(rect))
         {
+            mouseRectangle.x += rect.x;
+            mouseRectangle.y += rect.y;
             for( int i = 0; i < buttons.length; i++ )
             {
-                mouseRectangle.x += rect.x;
-                mouseRectangle.y += rect.y;
-                buttons[i].handleMouseClick(mouseRectangle, camera, xZoom, yZoom);
+
+                // mouseRectangle.w += xZoom;
+                // mouseRectangle.h += yZoom;
+                return buttons[i].handleMouseClick(mouseRectangle, camera, xZoom, yZoom);
             }
         }
 

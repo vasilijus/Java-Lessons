@@ -86,7 +86,7 @@ public class Game extends JFrame implements Runnable {
         // Load Map
         map = new Map(new File("saves/Map.txt"), tiles);
 
-        testRectangle.generateGraphics(1, 1230);
+        testRectangle.generateGraphics(2, 1230);
 
         // Load SKD GUI
         GUIButton[] buttons = new GUIButton[tiles.size()];
@@ -94,7 +94,7 @@ public class Game extends JFrame implements Runnable {
 
         for( int i = 0 ; i < buttons.length; i++)
         {  
-            Rectangle tileRectangle = new Rectangle(0, i * (16*xZoom), 16, 16);
+            Rectangle tileRectangle = new Rectangle(0, i * (16*xZoom + 2), 16, 16);
             buttons[i] = new SDKButton(tileSprites[i], tileRectangle);
         }
 
@@ -107,7 +107,6 @@ public class Game extends JFrame implements Runnable {
         objects[0] = player;
         objects[1] = gui;
         
-        System.out.print("objects: " + objects);
 
         // Add Listeners
         canvas.addKeyListener(keyListener);
@@ -150,6 +149,8 @@ public class Game extends JFrame implements Runnable {
     public void leftClick(int x, int y) {
         System.out.println("Click 1: " + x + " " + y);
         Rectangle mouseRectangle = new Rectangle(x, y, 1, 1);
+        boolean stoppedClick = false;
+        
         for( int i = 0; i < objects.length; i++ )
             objects[i].handleMouseClick(mouseRectangle, renderer.getCamera(), xZoom, yZoom);
 

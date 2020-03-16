@@ -69,5 +69,10 @@ public class Rectangle
             System.out.println("Attemted to retrieve pixels from a Rect without a generated graphics!");
         return null;
     }
+
+    public String toString()
+    {
+        return "[" + x + ", " + y + ", " + w + ", " + h + "]";
+    }
     
 }
