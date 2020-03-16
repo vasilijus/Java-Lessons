@@ -1,42 +1,38 @@
-// Interface 
 public abstract class GUIButton implements GameObject
 {
-    protected Sprite sprite;
-    protected Rectangle rect;
-    protected boolean fixed;
+	protected Sprite sprite;
+	protected Rectangle rect;
+	protected boolean fixed;
 
-    public GUIButton( Sprite sprite, Rectangle rect, Boolean fixed)
-    {
-        this.sprite = sprite;
-        this.rect = rect;
-        this.fixed = fixed;
-    }
+	public GUIButton(Sprite sprite, Rectangle rect, Boolean fixed)
+	{
+		this.sprite = sprite;
+		this.rect = rect;
+		this.fixed = fixed;
+	}
 
-    // Call every time physically possible
-    public void render( RenderHandler renderer , int xZoom, int yZoom ){}
-    
-    
-    public void render(RenderHandler renderer, int xZoom, int yZoom, Rectangle interfaceRect)
-    {
-        renderer.renderSprite(sprite, rect.x + interfaceRect.x, rect.y + interfaceRect.y, xZoom, yZoom, fixed);
-    }
+	//Call every time physically possible.
+	public void render(RenderHandler renderer, int xZoom, int yZoom) {}
 
-    // Call at 60 fps rate
-    public void update( Game game ) {}
+	public void render(RenderHandler renderer, int xZoom, int yZoom, Rectangle interfaceRect)
+	{
+		renderer.renderSprite(sprite, rect.x + interfaceRect.x, rect.y + interfaceRect.y, xZoom, yZoom, fixed);
+	}
 
-    // Call whenever mouse is clicked within the canvas
-    public boolean handleMouseClick( Rectangle mouseRectangle, Rectangle camera, int xZoom, int yZoom)
-    {
-        // System.out.println("Mouse: " + mouseRectangle);
-        // System.out.println("Button " + rect);
-        if( mouseRectangle.intersects(rect) ) {
-            activate();
-            return true;
-        }
+	//Call at 60 fps rate.
+	public void update(Game game) {}
 
-        return false;
-    }
+	//Call whenever mouse is clicked on Canvas.
+	public boolean handleMouseClick(Rectangle mouseRectangle, Rectangle camera, int xZoom, int yZoom)
+	{
+		if(mouseRectangle.intersects(rect)) {
+			activate();
+			return true;
+		}
 
-    public abstract void activate();
+		return false;
+	}
+
+	public abstract void activate();
 
 }
