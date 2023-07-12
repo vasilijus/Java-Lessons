@@ -3,6 +3,9 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 import java.util.Scanner;
+
+import TestPackage.MyPackageLog;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -10,6 +13,7 @@ public class Map
 {
 	private Tiles tileSet;
 	private int fillTileID = -1;
+	public MyPackageLog test = new MyPackageLog();
 
 	private ArrayList<MappedTile> mappedTiles = new ArrayList<MappedTile>();
 	private HashMap<Integer, String> comments = new HashMap<Integer, String>();
@@ -93,6 +97,10 @@ public class Map
 
 	public void saveMap()
 	{
+
+		test.LogOut("hello");
+		MyPackageLog.StaticLogOut();
+		
 		try
 		{
 			int currentLine = 0;
