@@ -10,6 +10,8 @@ import java.lang.Thread;
 
 import javax.swing.JFrame;
 
+
+
 import javax.imageio.ImageIO;
 
 import java.io.IOException;
@@ -77,7 +79,7 @@ public class Game extends JFrame implements Runnable
 		AnimatedSprite playerAnimations = new AnimatedSprite(playerSheet, 5);
 
 		//Load Tiles
-		tiles = new Tiles(new File("Tiles.txt"),sheet);
+		tiles = new Tiles(new File("Map/Tiles.txt"),sheet);
 
 		//Load Map
 		map = new Map(new File("Map.txt"), tiles);
